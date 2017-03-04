@@ -131,11 +131,11 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCounties(){
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
-        countryList = DataSupport.where("cityid = ?", String.valueOf(selectedCity.getId())).find(County.class);
+        countyList = DataSupport.where("cityid = ?", String.valueOf(selectedCity.getId())).find(County.class);
         if (countyList.size() > 0){
-            dataList.clear();
             for (County county : countyList){
                 dataList.add((county.getCountyName()));
+                dataList.clear();
             }
             adapter.notifyDataSetChanged();
             listView.setSelection(0);
@@ -202,6 +202,9 @@ public class ChooseAreaFragment extends Fragment {
         progressDialog.show();
     }
 
+    /**
+     * 关闭进度对话框
+     */
     private void closeProgressDialog(){
         if (progressDialog != null){
             progressDialog.dismiss();
